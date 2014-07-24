@@ -493,18 +493,12 @@ The structure of the paper is following. First, we briefly introduce existing da
 
 Research in the electrophysiology domain faces a lack of tools and infrastructure for collecting and processing experimental data. There are several organizations implementing an providing tools for data processing, electrophysiological databases or hardware devices. Lots of them are the members of international neuroinformatics community that activities are led by International Neuroinformatics Coordinating Facility (INCF)\footnote{http://www.incf.org/}.
 
-EEGBase\footnote{https://eegdatabase.kiv.zcu.cz} \cite{ISI:000306821100004} is a mature web based system that enables registered users storing, sharing an managing EEG/ERP experiments. A user interface preview is shown in Figure \ref{portal}.
-
-CRCNS \cite{CRCNS} provides marketplace and discussion forum for sharing tools and data in neuroscience. Helmholtz \cite{10.3389/conf.fninf.2013.09.00025} is a framework for creating neuroscience databases that are customized to the needs of individual neurophysiology labs. G-Node\footnote{http://www.g-node.org/} provides tools for data access, data management and data sharing, including a data sharing platform \cite{Sobolev:2014} based on common data models for electrophysiological data and metadata \cite{Garcia:2014,10.3389/fninf.2011.00016}. Carmen \cite{fgibson:Watson2007} is a virtual laboratory that enables a storage of experimental data, experimental protocols, or analysis code. It designs workflows from the stored code and run them remotely. EEGBase is a database of well-described EEG/ERP experimental data sets that enables users to upload, download and manage own experiments. INCF Dataspace \cite{dataspace} enables interested research groups to connect to a distributed data file system based on iRods\footnote{http://irods.org/}. 
-
-
-Clinician Assessment and Remote Administration Tablet (CARAT) \cite{10.3389/fninf.2011.00031} is a Microsoft Windows tablet adapted to collect and administer clinical assessments in large scale demographic or neuropsychiatric studies. It uses an architecture with two modules. The first one setups the clinical study while the second one serves to data collection. Collected data are synchronized with a remote database.
-
-Research Electronic Data Capture \cite{journals/bmcbi/Harris12} (REDCap) is a software application and workflow methodology designed to collect and manage data for research studies. REDCap Mobile \cite{Borlawsky01122011} is a solution that describes encrypted laptops with a push-pull relationship to the centralized REDCap database to allow data collection while off-line.
-
+CRCNS \cite{CRCNS} provides marketplace and discussion forum for sharing tools and data in neuroscience. Helmholtz \cite{10.3389/conf.fninf.2013.09.00025} is a framework for creating neuroscience databases that are customized to the needs of individual neurophysiology labs. Carmen \cite{fgibson:Watson2007} is a virtual laboratory that enables a storage of experimental data, experimental protocols, or analysis code. It designs workflows from the stored code and run them remotely. INCF Dataspace \cite{dataspace} enables interested research groups to connect to a distributed data file system based on iRods\footnote{http://irods.org/}. 
+G-Node\footnote{http://www.g-node.org/} provides tools for data access, data management and data sharing, including a data sharing platform \cite{Sobolev:2014} based on common data models for electrophysiological data and metadata \cite{Garcia:2014,10.3389/fninf.2011.00016}.
+An odML mobile editor \cite{10.3389/conf.fninf.2014.18.00053} is a standalone app for Android an iOS platform that enables users acquire metadata in a structured format. These metadata can be processed or shared. In addition, reusable templates can be designed and stored inside the device and filled in later.
+EEGBase \cite{ISI:000306821100004} is a database of well-described EEG/ERP experimental data sets that enables users to upload, download and manage EEG/ERP experiments. 
 A mobile EEGBase client \cite{10.3389/conf.fninf.2013.09.00046} enables users to collect data from EEG/ERP experiments and provides an online synchronization with EEGBase.
-
-An odML mobile editor \cite{10.3389/conf.fninf.2014.18.00053} is a standalone app for Android an iOS plratform that enables users acquire metadata in a structured format. These metadata can be processed or shared. In addition, reusable templates can be designed and stored inside the device and filled later.
+While the odML editor is an approach working independently of database structure and the mobile EEGBase client is intended for a client-server system a combination of these two systems is beneficial for current work.
 
 \section{Proposed Framework}\label{Framework}
 
@@ -571,7 +565,7 @@ When the data layer of the database is annotated, it must be mapped to a suitabl
 \subsection{Mapping Implementation}
 
 
-The mapping presented in Section \ref{Mapping_Code_To_Template} shows transferring persistent Java classes to templates. Then, these templates are mapped to odML representation and transferred to the client. OdML is based on \textit{Sections} that can contain \textit{Properties} and \textit{Values}. Moreover, each section can contain subsections (tree-like structures can be created). In our aproach forms are represented by sections, items by subsections and restrictions by properties. Definition \ref{def:Java_annotation_extraction_process} formalizes an extraction process from Java Annotations to corresponding odML representation.
+The mapping presented in Section \ref{Mapping_Code_To_Template} shows transferring persistent Java classes to templates. Then, these templates are mapped to odML representation and transferred to the client. OdML is based on \textit{Sections} that can contain \textit{Properties} and \textit{Values}. Moreover, each section can contain subsections (tree-like structures can be created). In our approach forms are represented by sections, items by subsections and restrictions by properties. Definition \ref{def:Java_annotation_extraction_process} formalizes an extraction process from Java Annotations to corresponding odML representation.
 
 \begin{definition}
 \label{def:Java_annotation_extraction_process}
@@ -750,13 +744,13 @@ The main focus of the research group are methods and techniques of electroenceph
 
 Experimental procedure follows several steps.  Experiments are performed according to defined scenario. Then data and metadata are collected. These data are analyzed and results are stored and published. The central point of this infrastructure is EEGBase \cite{DBLP:conf/biostec/JezekSBM13} that serves for storing and management of EEG/ERP experiments.
 
-Although the system uses a web-based interface, a lot of experiments are conducted outside the laboratory when the common computer, or internet access are not available. The aim of this use case is to validate the integration of the presented framework and generation of templates according to data structure. Generation of templates is controlled by an Android phone. When the template is generated, new data can be collected and synchronized with EEGBase.
+Although the system uses a web-based interface, a lot of experiments are conducted outside the laboratory when the common computer, or Internet access are not available. The aim of this use case is to validate the integration of the presented framework and generation of templates according to data structure. Generation of templates is controlled by an Android phone. When the template is generated, new data can be collected and synchronized with EEGBase.
 
 \subsection{EEGBase} \label{Portal}
 
 
 
-EEGBase provides a simple wizard that guides the user when uploading experiments. The user is instructed what metadata have to be filled in. The collected metadata respecting experience of our research partners with designing and performing experiments and experimental scenarios. The metadata follow ontology described in \cite{BMEI_jezek_moucek}.
+EEGBase\footnote{https://eegdatabase.kiv.zcu.cz} provides a simple wizard that guides the user when uploading experiments. The user is instructed what metadata have to be filled in. The collected metadata respecting experience of our research partners with designing and performing experiments and experimental scenarios. The metadata follow ontology described in \cite{BMEI_jezek_moucek}. A user interface preview is shown in Figure \ref{portal}.
 
 The core structure contains the following semantic metadata groups:
 
@@ -889,7 +883,7 @@ Since EEGBase implements RESTFull web services \cite{Richardson:2007:RWS:1406352
 
 \subsection{Mobile Client} \label{Mobile_Client}
 
-The mobile client uses common design of Android applications. Main activities of the use-case study are shown in several screenshots in Figure \ref{fig:mob_app_prev}. Because the client is intended to work with various electrophysiological databases, it enables creating separate workspaces where each workspace works with different user credentials. In Figure \ref{fig:mob_app_preva} the user creates a new workspace. Users credentials are optional because the client can work as a stand alone system as well. In Figure \ref{fig:mob_app_prevb} available layouts are listed; the user can download them. Finally, in Figure \ref{fig:mob_app_prevc} the user can download data from the server or add new data as shown in Figure \ref{fig:mob_app_prevd}.
+The mobile client uses common design of Android applications. Main activities of the use-case study are shown in several screen-shots in Figure \ref{fig:mob_app_prev}. Because the client is intended to work with various electrophysiological databases, it enables creating separate workspaces where each workspace works with different user credentials. In Figure \ref{fig:mob_app_preva} the user creates a new workspace. Users credentials are optional because the client can work as a stand alone system as well. In Figure \ref{fig:mob_app_prevb} available layouts are listed; the user can download them. Finally, in Figure \ref{fig:mob_app_prevc} the user can download data from the server or add new data as shown in Figure \ref{fig:mob_app_prevd}.
 
 By following the described steps we created one workspace connected to EEGBase (see Figure\ref{fig:mob_app_preva}) and downloaded available layouts (Person, Scenario, Experiment and DataFile as listed in Figure \ref{fig:mob_app_prevb}). When the layouts were downloaded experiments from the server were listed (see Figure \ref{fig:mob_app_prevc}). Finally, we add several new experiments using form listed in Figure \ref{fig:mob_app_prevd}. These experiments were stored on the server.
 
