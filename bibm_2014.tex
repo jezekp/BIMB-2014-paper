@@ -499,6 +499,8 @@ Research Electronic Data Capture \cite{journals/bmcbi/Harris12} (REDCap) is a so
 
 A mobile EEGBase client \cite{10.3389/conf.fninf.2013.09.00046} enables users to collect data from EEG/ERP experiments and provides an online synchronization with EEGBase.
 
+An odML mobile editor \cite{10.3389/conf.fninf.2014.18.00053} is a standalone app for Android an iOS plratform that enables users acquire metadata in a structured format. These metadata can be processed or shared. In addition, reusable templates can be designed and stored inside the device and filled later.
+
 \section{Proposed Framework}\label{Framework}
 
 \subsection{System Restrictions and Requirements}
@@ -564,7 +566,7 @@ When the data layer of the database is annotated, it must be mapped to a suitabl
 \subsection{Mapping Implementation}
 
 
-The mapping presented in Section \ref{Mapping_Code_To_Template} shows transferring persistent Java classes to templates. Then, these templates are mapped to odML representation and transferred to the client. OdML is based on \textit{Sections} that can contain \textit{Properties} and \textit{Values}. Moreover, each section can contain subsections (tree-like structures can be created). Definition \ref{def:Java_annotation_extraction_process} formalizes an extraction process from Java Annotations to corresponding odML representation.
+The mapping presented in Section \ref{Mapping_Code_To_Template} shows transferring persistent Java classes to templates. Then, these templates are mapped to odML representation and transferred to the client. OdML is based on \textit{Sections} that can contain \textit{Properties} and \textit{Values}. Moreover, each section can contain subsections (tree-like structures can be created). In our aproach forms are represented by sections, items by subsections and restrictions by properties. Definition  \ref{def:Java_annotation_extraction_process} formalizes an extraction process from Java Annotations to corresponding odML representation.
 
 \begin{definition}
 \label{def:Java_annotation_extraction_process}
@@ -583,7 +585,7 @@ annotation}.
 
 Listing \ref{class_ex} shows an Example of the class \textit{Person} containing several attributes \textit{givenname}, \textit{surname} and \textit{gender} supplemented by metadata annotations (other annotations, class imports, get/set methods, and other fields are omitted for simplicity).
 
-An XML serialization of this class to an odML document is presented in Listing \ref{odml_rep}. The document shows one section named \textit{Person} with a subsection \textit{gender} (note: Because of XML serialization is quite long, similar subsections representing other attributes are omitted). All restrictions are represented by properties of this section. In addition, because the Java code is reflective, data types or names of attributes can be straightforwardly transferred to odML properties.
+An XML serialization of this class to an odML document is presented in Listing \ref{odml_rep}. The document shows one section named \textit{Person} with subsections \textit{givenanme} and \textit{gender} (note: Because of XML serialization is quite long, similar subsections representing other attributes are omitted). All restrictions are represented by properties of this section. In addition, because the Java code is reflective, data types or names of attributes can be straightforwardly transferred to odML properties. With respect to commonly used data types String, Integer, DateTime, Float, Char or Boolean are supported. In addition, a combobox data type is used for arrays or lists of values.
 
 
 \scriptsize
@@ -604,9 +606,8 @@ public class Person{
 
 \tiny
 \lstset{language=XML, morekeywords={section, type, name, property, odML, reference, value}, breaklines=true}
-\begin{multicols}{2}
-\begin{lstlisting}[label=odml_rep,caption=odML Representation]
-
+\begin{multicols}{2}[\captionof{lstlisting}{odML Representation}]
+\begin{lstlisting}[label=odml]
   <section>
    <type>form</type>
     <name>Person</name>
@@ -624,18 +625,31 @@ public class Person{
         <type>string</type>
       </value>
     </property>
-    <property>
-      <value>
-        surname
-        <type>string</type>
-      </value>
-    </property>
-    <property>
-      <value>
-        givenname
-        <type>string</type>
-      </value>
-    </property>
+    <section>
+      <type>textbox</type>
+      <name>givenname</name>
+      <property>
+        <name>cardinality</name>
+        <value>
+          1
+          <type>int</type>
+        </value>
+      </property>
+      <property>
+        <name>required</name>
+        <value>
+          false
+          <type>boolean</type>
+        </value>
+      </property>
+      <property>
+        <name>datatype</name>
+        <value>
+          string
+          <type>string</type>
+        </value>
+      </property>
+    </section>
    ...
     <section>
       <type>combobox</type>
